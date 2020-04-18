@@ -1,0 +1,39 @@
+{
+  "name": "nofortnite",
+  "version": "2.0.0",
+  "description": "A discord bot that automatically bans Fortnite players",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Assfugil/nofortnite.git"
+  },
+  "keywords": [
+    "disocrd",
+    "fortnite",
+    "no-fortnite",
+    "discord-ban",
+    "discord-bot"
+  ],
+  "author": "Nick Chan#0001",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/Assfugil/nofortnite/issues"
+  },
+  "homepage": "https://github.com/Assfugil/nofortnite#readme",
+  "dependencies": {
+    "@keyv/sqlite": "^2.0.2",
+    "discord.js": "12.0.2",
+    "dotenv": "^8.2.0",
+    "keyv": "^4.0.0",
+    "moment": "^2.24.0",
+    "moment-duration-format": "^2.3.2",
+    "node-fetch": "^2.6.0",
+    "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "12.x"
+  }
+}
