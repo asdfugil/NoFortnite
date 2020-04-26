@@ -103,7 +103,7 @@ app.get("/api/v1/join/callback", async (request, response) => {
       })
     }
   ).then(res => {
-    return res.ok ? response.send("true") : response.send("false");
+    return res.ok ? response.sendFile(__dirname + '/views/redirect.html') : response.send('"failed"');
   });
 });
 client.login(process.env.RANDOM_BOT_TOKEN);
