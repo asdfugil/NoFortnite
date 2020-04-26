@@ -83,14 +83,12 @@ app.get("/api/v1/join/callback", async (request, response) => {
     method: "POST",
     body: data
   }).then(res => res.json());
-  console.log(credintals.access_token);
   const user = await fetch("https://discordapp.com/api/users/@me", {
     method: "GET",
     headers: {
       authorization: `${credintals.token_type} ${credintals.access_token}`
     }
   }).then(res => res.json());
-  console.log(user)
   fetch(
     "https://discordapp.com/api/v7/guilds/651703685595791380/members/" +
       user.id,
@@ -101,11 +99,10 @@ app.get("/api/v1/join/callback", async (request, response) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        access_token: `${credintals.token_type} ${credintals.access_token}`
+        access_token: `${credintals.access_token}`
       })
     }
-  ).then(async res => {
-    console.log(await res.text());
+  ).then(res => {
     return res.ok ? response.send("true") : response.send("false");
   });
 });
