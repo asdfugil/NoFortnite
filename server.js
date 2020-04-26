@@ -78,15 +78,17 @@ app.get("/api/v1/join/callback", async (request, response) => {
   data.append("grant_type", "authorization_code");
   data.append("redirect_uri", REDIRECT_URI);
   data.append("scope", SCOPES);
-  data.append("code", request.query.access_token);
+  data.append("code", request.query.code);
   const credintals = await fetch("https://discordapp.com/api/oauth2/token", {
     method: "POST",
     body: data
   }).then(res => res.json());
+  console.log(credintals.access_token)
   fetch("https://discordapp.com/api/v7/guilds/651703685595791380/members", {
     method: "PUT",
     headers: {
-      Authorization: BOT_TOKEN
+      authorization: BOT_TOKEN,
+      "Content-Type":"application/json"
     },
     body: {
       access_token: `${credintals.access_token}`
