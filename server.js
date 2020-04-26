@@ -73,7 +73,7 @@ app.get("/api/v1/join/callback", async (request, response) => {
         Authorization: process.env.BOT_TOKEN
       },
       body: {
-        access_token: request.query.code
+        access_token: request.query.access_token
       }
     }
   ).then(async res => {
