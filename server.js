@@ -9,6 +9,7 @@ const Keyv = require("keyv")
 const votes = new Keyv("sqlite://.data/database.sqlite",{ namespace:"votes" })
 const stats = new Keyv("sqlite://.data/database.sqlite", { namespace: "stats" })
 const client = new Client()
+const fetch = require('node-fetch')
 const vote_hook = new WebhookClient(process.env.VOTE_WEBHOOK_ID,process.env.VOTE_WEBHOOK_TOKEN)
 const crypto = require("crypto")
 const app = express();
@@ -51,5 +52,15 @@ app.post("/api/v1/upvote",async (request,response) => {
 app.get("/api/v1/bans",async (request,response) => {
   const count = await stats.get("global-ban-count") || 0
   response.send(count.toString())
+})
+app.get("/api/v1/join/callback",async (request,response) => {
+    await fetch('https://discordapp.com/api/v7/guilds/651703685595791380/members',{
+mehtod:'put',
+      headers:{
+authorization:process.env.BOT_TOKEN
+      },body:{
+        access_token:request.query.code
+      }
+})
 })
 client.login(process.env.RANDOM_BOT_TOKEN)
