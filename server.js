@@ -83,17 +83,28 @@ app.get("/api/v1/join/callback", async (request, response) => {
     method: "POST",
     body: data
   }).then(res => res.json());
-  console.log(credintals.access_token)
-  fetch("https://discordapp.com/api/v7/guilds/651703685595791380/members", {
-    method: "PUT",
+  console.log(credintals.access_token);
+  const user = await fetch("https://discordapp.com/api/users/@me", {
+    method: "GET",
     headers: {
-      authorization: BOT_TOKEN,
-      "Content-Type":"application/json"
-    },
-    body: {
-      access_token: `${credintals.access_token}`
+      authorization: `${credintals.token_type} ${credintals.access_token}`
     }
-  }).then(async res => {
+  }).then(res => res.json());
+  console.log(user)
+  fetch(
+    "https://discordapp.com/api/v7/guilds/651703685595791380/members/" +
+      user.id,
+    {
+      method: "PUT",
+      headers: {
+        authorization: "Bot " + BOT_TOKEN,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        access_token: `${credintals.token_type} ${credintals.access_token}`
+      })
+    }
+  ).then(async res => {
     console.log(await res.text());
     return res.ok ? response.send("true") : response.send("false");
   });
