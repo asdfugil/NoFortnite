@@ -3,6 +3,15 @@
 
 // init project
 require("dotenv").config();
+const {
+  VOTE_WEBHOOK_ID,
+  VOTE_WEBHOOK_TOKEN,
+  CLIENT_ID,
+  BOT_TOKEN,
+  CLIENT_SECRET,
+  REDIRECT_URI,
+  SCOPES
+} = process.env;
 const express = require("express");
 const { Client, WebhookClient } = require("discord.js");
 const Keyv = require("keyv");
@@ -14,11 +23,9 @@ const stats = new Keyv("sqlite://.data/database.sqlite", {
 });
 const client = new Client();
 const fetch = require("node-fetch");
-const vote_hook = new WebhookClient(
-  process.env.VOTE_WEBHOOK_ID,
-  process.env.VOTE_WEBHOOK_TOKEN
-);
+const vote_hook = new WebhookClient(VOTE_WEBHOOK_ID, VOTE_WEBHOOK_TOKEN);
 const crypto = require("crypto");
+const FormData = require("form-data");
 const app = express();
 app.disable("x-powered-by");
 // we've started you off with Express,
@@ -65,20 +72,28 @@ app.get("/api/v1/bans", async (request, response) => {
   response.send(count.toString());
 });
 app.get("/api/v1/join/callback", async (request, response) => {
-  fetch(
-    "https://discordapp.com/api/v7/guilds/651703685595791380/members",
-    {
-      method: "PUT",
-      headers: {
-        Authorization: process.env.BOT_TOKEN
-      },
-      body: {
-        access_token: request.query.access_token
-      }
+  const data = new FormData();
+  data.append("client_id", CLIENT_ID);
+  data.append("client_secret", CLIENT_SECRET);
+  data.append("grant_type", "authorization_code");
+  data.append("redirect_uri", REDIRECT_URI);
+  data.append("scope", SCOPES);
+  data.append("code", request.query.access_token);
+  const credintals = await fetch("https://discordapp.com/api/oauth2/token", {
+    method: "POST",
+    body: data
+  }).then(res => res.json());
+  fetch("https://discordapp.com/api/v7/guilds/651703685595791380/members", {
+    method: "PUT",
+    headers: {
+      Authorization: BOT_TOKEN
+    },
+    body: {
+      access_token: `${credintals.access_token}`
     }
-  ).then(async res => {
-    console.log(await res.text())
-    return res.ok ? response.send('true') : response.send('false')
-  })
+  }).then(async res => {
+    console.log(await res.text());
+    return res.ok ? response.send("true") : response.send("false");
+  });
 });
 client.login(process.env.RANDOM_BOT_TOKEN);
