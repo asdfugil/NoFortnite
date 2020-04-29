@@ -137,26 +137,6 @@ client.on("ready", async () => {
   });
   client.owner = await client.users.fetch(process.env.OWNERID);
 });
-/*
-setInterval(() => {
-  client.users.cache.sweep(
-    x =>
-      x.presence.activities.some(y => y.name.toLowerCase() !== "fortnite") &&
-      x.id !== process.env.OWNERID
-  );
-}, 30);
-*/
-
-setInterval(() => {
-  client.guilds.cache.forEach(guild => {
-    guild.presences.cache.sweep(
-      x =>
-        x.member &&
-        x.member.id !== process.env.OWNERID &&
-        x.activities.some(y => y.name.toLowerCase() !== "fortnite")
-    );
-  });
-}, 300);
 client.login(process.env.BOT_TOKEN)
 .catch(() => client.login(process.env.BOT_TOKEN))
 .catch(() => client.login(process.env.BOT_TOKEN))
