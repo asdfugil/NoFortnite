@@ -10,8 +10,6 @@ module.exports = async function (_, presence) {
     if (!presence.member || !presence.guild) return
     if (presence.member.partial) presence = await presence.guild.members.fetch(presence.member.id)
     if (!presence.activities || !presence.activities.some(x => x.name.toLowerCase() === 'fortnite')) return
-    if (presence.guild.id !== "264445053596991498")
-        console.log(presence.member.user.tag + " is playing Fortnite in " + presence.guild.name) // discord bot list
     /**@type { Collection<string,TextChannel> } */
     const text_channels = presence.guild.channels.cache.filter(x => x.type === 'text')
     const channel = presence.guild.channels.cache.get(await log_channels.get(presence.member.guild.id)) || text_channels.find(x => x.name === "no-fortnite-logs")
