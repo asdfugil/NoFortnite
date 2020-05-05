@@ -34,7 +34,7 @@ module.exports = {
         .setTitle("Error")
            if (clean(stderr).length < 2010)embed.setDescription("```bash\n" + (clean(stderr) || "# Command execution failed and returned no output") +"\n```");
         embed.setFooter(`${time}ms`)
-        if (message.guild && message.channel.permissionsFor(message.guild.me).serialize().ATTACH_FILES) embed.attachFiles(["/tmp/stdout.log"])
+        if (message.guild && message.channel.permissionsFor(message.guild.me).serialize().ATTACH_FILES) embed.attachFiles(["/tmp/stderr.log"])
         return message.channel.send(embed)
       } else {
         embed
@@ -42,7 +42,6 @@ module.exports = {
         .setTitle("Output")
         .setDescription("```bash\n# Command executed successfully but returned no output\n```")
         .setFooter(`${time}ms`)
-        if (message.guild && message.channel.permissionsFor(message.guild.me).serialize().ATTACH_FILES) embed.attachFiles(["/tmp/stdout.log"])
         return message.channel.send(embed)
       }
    })
