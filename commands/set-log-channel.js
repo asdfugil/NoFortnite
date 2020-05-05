@@ -13,7 +13,7 @@ module.exports = {
             return
         }
         const channel = message.guild.channels.cache.find(x => args.join(" ").includes(x.id) || args.join(" ").includes(x.name))
-        if (!channel) message.reply("I cannot find that channel.")
+        if (!channel) return message.reply("I cannot find that channel.")
         if (channel.type !== 'text') message.reply("That channel is not a text channel.")
         log_channels.set(message.guild.id,channel.id)
         .then(() => message.channel.send(channel + " will be used for logging."))
