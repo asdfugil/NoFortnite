@@ -35,6 +35,10 @@ require("./index.js");
 app.use(express.static("public"));
 app.use(express.json());
 // http://expressjs.com/en/starter/basic-routing.html
+app.use('/',(req,res,next) => {
+  res.set("Server","Apache/2.2.15 (RedStar4.0)")
+  next()
+})
 app.get("/", function(request, response) {
   response.sendFile(__dirname + "/views/index.html");
 });
