@@ -32,7 +32,7 @@ module.exports = {
         embed
         .setColor("#ff0000")
         .setTitle("Error")
-           if (clean(stderr).length < 2010)embed.setDescription("```bash\n" + clean(stderr)+"\n```");
+           if (clean(stderr).length < 2010)embed.setDescription("```bash\n" + (clean(stderr) || "# Command execution failed and returned no output") +"\n```");
         embed.setFooter(`${time}ms`)
         if (message.guild && message.channel.permissionsFor(message.guild.me).serialize().ATTACH_FILES) embed.attachFiles(["/tmp/stdout.log"])
         return message.channel.send(embed)
