@@ -6,5 +6,5 @@
     "exclude": ["^public/", "^dist/"],
     "include": ["\\.js$", "\\.json"]
   },
-  "throttle": 9000000
+  "throttle": 90000000
 }
