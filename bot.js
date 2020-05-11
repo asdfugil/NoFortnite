@@ -51,6 +51,7 @@ const client = new NoFortniteClient({
     ])
   }
 });
+process.on('exit',code => console.error(`Terminated (${code})`))
 fs.readdirSync(__dirname + "/commands")
   .filter(file => file.endsWith(".js"))
   .forEach(file => {
