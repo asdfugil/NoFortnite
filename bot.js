@@ -1,4 +1,4 @@
-console.log("Starting...");
+//console.log("Starting...");
 require("dotenv").config();
 const { Client, Collection, BaseManager, Intents } = require("discord.js");
 const { Command } = require("./command.js");
@@ -56,7 +56,7 @@ fs.readdirSync(__dirname + "/commands")
   .forEach(file => {
     try {
       const cmd = client.commands.load("./commands/" + file);
-      console.log(`Command "${cmd.name}" loaded.`);
+      // console.log(`Command "${cmd.name}" loaded.`);
     } catch (error) {
       console.log(`Unable to load ${file}, reason:\n${error.stack}`);
     }
@@ -131,7 +131,7 @@ client.on("message", async message => {
   }
 });
 client.on("ready", async () => {
-  console.log("Ready!");
+  console.log(`Logged in as ${client.user.tag} at ${new Date().toString()}.`);
   client.user.setActivity({
     name: "V2! | Use " + process.env.PREFIX + "help for help"
   });
