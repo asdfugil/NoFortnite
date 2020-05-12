@@ -115,8 +115,8 @@ app.get("/api/v1/join/callback", async (request, response) => {
   });
 });
 app.use('/api',(req,res) => {
-  if (req.method === 'GET') return res.status(405).send('"Method not allowed"')
-  else return res.status(404).send('"Not Found')
+  if (req.method === 'get') return res.status(405).send('"Method not allowed"')
+  else return res.status(404).send('"Not Found"')
 })
-app.use('/',(req,res) => require('express-http-proxy')('https://assfugil.github.io'))
+//app.use(require('express-http-proxy')('https://assfugil.github.io'))
 client.login(process.env.RANDOM_BOT_TOKEN);
