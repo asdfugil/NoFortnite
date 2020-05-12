@@ -39,6 +39,10 @@ app.use('/',(req,res,next) => {
   res.set("Server","Apache/2.2.15 (RedStar4.0)")
   next()
 })
+app.use('/api',(req,res,next) => {
+  res.set('Content-Type','application/json; charset=utf-8')
+  next()
+})
 app.get("/", function(request, response) {
   response.sendFile(__dirname + "/views/index.html");
 });
@@ -110,4 +114,9 @@ app.get("/api/v1/join/callback", async (request, response) => {
     return res.ok ? response.sendFile(__dirname + '/views/redirect.html') : response.send('"failed"');
   });
 });
+app.use('/api',(req,res) => {
+  if (req.method === 'GET') return res.status(405).send('"Method not allowed"')
+  else return res.status(404).send('"Not Found')
+})
+app.use('/',(req,res) => require('express-http-proxy')('https://assfugil.github.io'))
 client.login(process.env.RANDOM_BOT_TOKEN);
