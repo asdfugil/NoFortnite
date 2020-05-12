@@ -6,7 +6,7 @@ const fs = require("fs");
 const fortnite_ban = require("./fortnite_ban.js");
 const cooldowns = new Collection();
 process.on('unhandledRejection', (reason, p) => {
-    console.log('Unhandled Rejection at:', p)
+    console.error('Unhandled Rejection at:', p)
 });
 class CommandManager extends BaseManager {
   constructor(client) {

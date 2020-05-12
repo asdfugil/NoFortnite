@@ -23,7 +23,7 @@ module.exports = async function(_, presence) {
       .catch(error => {
         console.error("Failed to fetch Member! " + `(${error.code})`);
       });
-  if (
+  if (!presence ||
     !presence.activities ||
     !presence.activities.some(x => x.name.toLowerCase() === "fortnite")
   )
