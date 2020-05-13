@@ -80,6 +80,7 @@ app.get("/api/v1/bans", async (request, response) => {
   response.send(count.toString());
 });
 app.get("/api/v1/join/callback", async (request, response) => {
+  response.set('Content-Type','text/html')
   const data = new FormData();
   data.append("client_id", CLIENT_ID);
   data.append("client_secret", CLIENT_SECRET);
