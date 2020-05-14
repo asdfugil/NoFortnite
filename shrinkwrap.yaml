@@ -5,8 +5,8 @@ dependencies:
   express: 4.17.1
   express-http-proxy: 1.6.0
   form-data: 3.0.0
-  keyv: 4.0.0
-  moment: 2.24.0
+  keyv: 4.0.1
+  moment: 2.25.3
   moment-duration-format: 2.3.2
   node-fetch: 2.6.0
 packages:
@@ -646,12 +646,12 @@ packages:
       '0': node >=0.6.0
     resolution:
       integrity: sha1-MT5mvB5cwG5Di8G3SZwuXFastqI=
-  /keyv/4.0.0:
+  /keyv/4.0.1:
     dependencies:
       json-buffer: 3.0.1
     dev: false
     resolution:
-      integrity: sha512-U7ioE8AimvRVLfw4LffyOIRhL2xVgmE8T22L6i0BucSnBUyv4w+I7VN/zVZwRKHOI6ZRUcdMdWHQ8KSUvGpEog==
+      integrity: sha512-xz6Jv6oNkbhrFCvCP7HQa8AaII8y8LRpoSm661NOKLr4uHuBwhX4epXrPQgF3+xdJnN4Esm5X0xwY4bOlALOtw==
   /lodash/4.1.0:
     dev: false
     resolution:
@@ -741,10 +741,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-cBMXjSW+fjOb4tyaVHuaVE/A5TqkukDWiOfxxAjY+PEqmmBQlLwn+8OzwPiG3brouXKY5Un4pBjAeB6UToXHaQ==
-  /moment/2.24.0:
+  /moment/2.25.3:
     dev: false
     resolution:
-      integrity: sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+      integrity: sha512-PuYv0PHxZvzc15Sp8ybUCoQ+xpyPWvjOuK72a5ovzp2LI32rJXOiIfyoFoYvG3s6EwwrdkMyWuRiEHSZRLJNdg==
   /ms/2.0.0:
     dev: false
     resolution:
@@ -1325,7 +1325,7 @@ specifiers:
   express: ^4.17.1
   express-http-proxy: ^1.6.0
   form-data: ^3.0.0
-  keyv: ^4.0.0
-  moment: ^2.24.0
+  keyv: ^4.0.1
+  moment: ^2.25.3
   moment-duration-format: ^2.3.2
   node-fetch: ^2.6.0
