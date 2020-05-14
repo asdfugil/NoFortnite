@@ -1,14 +1,19 @@
 dependencies:
   '@keyv/sqlite': 2.0.2
+  bufferutil: 4.0.1
   discord.js: 12.2.0
   dotenv: 8.2.0
   express: 4.17.1
   express-http-proxy: 1.6.0
   form-data: 3.0.0
   keyv: 4.0.1
+  libsodium-wrappers: 0.7.6
   moment: 2.25.3
   moment-duration-format: 2.3.2
   node-fetch: 2.6.0
+  sodium: 3.0.2
+  utf-8-validate: 5.0.2
+  zlib-sync: 0.1.6
 packages:
   /@discordjs/collection/0.1.5:
     dev: false
@@ -153,6 +158,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==
+  /bufferutil/4.0.1:
+    dependencies:
+      node-gyp-build: 3.7.0
+    dev: false
+    requiresBuild: true
+    resolution:
+      integrity: sha512-xowrxvpxojqkagPcWRQVXZl0YXhRhAtBEIq3VoER1NH5Mw1n1o0ojdspp+GS2J//2gCVyrzQDApQ4unGF+QOoA==
   /bytes/3.1.0:
     dev: false
     engines:
@@ -652,6 +664,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-xz6Jv6oNkbhrFCvCP7HQa8AaII8y8LRpoSm661NOKLr4uHuBwhX4epXrPQgF3+xdJnN4Esm5X0xwY4bOlALOtw==
+  /libsodium-wrappers/0.7.6:
+    dependencies:
+      libsodium: 0.7.6
+    dev: false
+    resolution:
+      integrity: sha512-OUO2CWW5bHdLr6hkKLHIKI4raEkZrf3QHkhXsJ1yCh6MZ3JDA7jFD3kCATNquuGSG6MjjPHQIQms0y0gBDzjQg==
+  /libsodium/0.7.6:
+    dev: false
+    resolution:
+      integrity: sha512-hPb/04sEuLcTRdWDtd+xH3RXBihpmbPCsKW/Jtf4PsvdyKh+D6z2D2gvp/5BfoxseP+0FCOg66kE+0oGUE/loQ==
   /lodash/4.1.0:
     dev: false
     resolution:
@@ -761,6 +783,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
+  /nan/2.14.1:
+    dev: false
+    resolution:
+      integrity: sha512-isWHgVjnFjh2x2yuJ/tj3JbwoHu3UC2dX5G/88Cm24yB6YopVgxvBObDY7n5xW6ExmFhJpSEQqFPvq9zaXc8Jw==
   /needle/2.4.1:
     dependencies:
       debug: 3.2.6
@@ -778,12 +804,21 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
+  /node-addon-api/3.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-sSHCgWfJ+Lui/u+0msF3oyCgvdkhxDbkCS6Q8uiJquzOimkJBvX6hl5aSSA7DR1XbMpdM8r7phjcF63sF4rkKg==
   /node-fetch/2.6.0:
     dev: false
     engines:
       node: 4.x || >=6.0.0
     resolution:
       integrity: sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+  /node-gyp-build/3.7.0:
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-L/Eg02Epx6Si2NXmedx+Okg+4UHqmaf3TNcxd50SF9NQGcJaON3AtU++kax69XV7YWz4tUspqZSAsVofhFKG2w==
   /node-pre-gyp/0.11.0:
     dependencies:
       detect-libc: 1.0.3
@@ -1111,6 +1146,13 @@ packages:
     dev: false
     resolution:
       integrity: sha1-XtwETKTrb3gW1Qui/GPiXY/kcH8=
+  /sodium/3.0.2:
+    dependencies:
+      node-addon-api: 3.0.0
+    dev: false
+    requiresBuild: true
+    resolution:
+      integrity: sha512-IsTwTJeoNBU97km3XkrbCGC/n/9aUQejgD3QPr2YY2gtbSPru3TI6nhCqgoez9Mv88frF9oVZS/jrXFbd6WXyA==
   /sql/0.78.0:
     dependencies:
       lodash: 4.1.0
@@ -1261,6 +1303,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-KY9Frmirql91X2Qgjry0Wd4Y+YTdrdZheS8TFwvkbLWf/G5KNJDCh6pKL5OZctEW4+0Baa5idK2ZQuELRwPznQ==
+  /utf-8-validate/5.0.2:
+    dependencies:
+      node-gyp-build: 3.7.0
+    dev: false
+    requiresBuild: true
+    resolution:
+      integrity: sha512-SwV++i2gTD5qh2XqaPzBnNX88N6HdyhQrNNRykvcS0QKvItV9u3vPEJr+X5Hhfb1JC0r0e1alL0iB09rY8+nmw==
   /util-deprecate/1.0.2:
     dev: false
     resolution:
@@ -1315,17 +1364,29 @@ packages:
     dev: false
     resolution:
       integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==
+  /zlib-sync/0.1.6:
+    dependencies:
+      nan: 2.14.1
+    dev: false
+    requiresBuild: true
+    resolution:
+      integrity: sha512-B2XGrhlXs/izEks+705vn/aL+nWyPgnS1glyCeH8wgZdOvztRn3ZEdqclj6GoJSeA/iRSqaTlznG2KO1M/GuWg==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   '@keyv/sqlite': ^2.0.2
+  bufferutil: ^4.0.1
   discord.js: ^12.2.0
   dotenv: ^8.2.0
   express: ^4.17.1
   express-http-proxy: ^1.6.0
   form-data: ^3.0.0
   keyv: ^4.0.1
+  libsodium-wrappers: ^0.7.5
   moment: ^2.25.3
   moment-duration-format: ^2.3.2
   node-fetch: ^2.6.0
+  sodium: ^3.0.2
+  utf-8-validate: ^5.0.2
+  zlib-sync: ^0.1.6
