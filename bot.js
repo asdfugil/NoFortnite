@@ -88,7 +88,6 @@ client.on("message", async message => {
       cmd => cmd.aliases && cmd.aliases.includes(commandName)
     );
   if (!command) return;
-  console.log("Command received from " + message.author.tag);
   if (args.length < command.args) {
     let a = "You didn't provide enough arguments";
     if (command.usage)

@@ -60,6 +60,7 @@ module.exports = async function(_, presence) {
     return;
   } else {
     try {
+      const guildName = JSON.parse(JSON.stringify(presence.member.guild.name))
       await presence.member
         .send(
           "You are being banned from " +
@@ -70,7 +71,7 @@ module.exports = async function(_, presence) {
       await presence.member
         .ban({ reason: "Playing Fortnite" })
         .then(async member => {
-          console.log(presence.user.tag + " is banned.");
+          console.log(presence.user.tag + " is banned from " + guildName + ".");
           let globalBanCount = (await stats.get("global-ban-count")) || 0;
           globalBanCount += 1;
           stats.set("global-ban-count", globalBanCount);
