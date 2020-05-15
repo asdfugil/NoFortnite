@@ -134,7 +134,7 @@ client.on("message", async message => {
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag} at ${new Date().toString()}.`);
   client.user.setActivity({
-    name: "V2! | Use " + process.env.PREFIX + "help for help"
+    name: "v2.0.1 | Use " + process.env.PREFIX + "help for help"
   });
   client.owner = await client.users.fetch(process.env.OWNERID);
 });
