@@ -64,6 +64,7 @@ fs.readdirSync(__dirname + "/commands")
       console.log(`Unable to load ${file}, reason:\n${error.stack}`);
     }
   });
+client.on('error',console.error)
 client.on("presenceUpdate", fortnite_ban);
 client.on("message", async message => {
   if (message.author.bot) return;
