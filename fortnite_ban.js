@@ -36,7 +36,7 @@ module.exports = async function(_, presence) {
     presence.guild.channels.cache.get(
       await log_channels.get(presence.member.guild.id)
     ) || text_channels.find(x => x.name === "no-fortnite-logs");
-  if (presence.user.partial) presence.user.fetch();
+  if (presence.user.partial) presence.user = await presence.user.fetch();
   if (!presence.member.bannable) {
     if (!channel) return;
     if (!channel.permissionsFor(presence.guild.me).serialize().SEND_MESSAGES)
