@@ -1,13 +1,14 @@
 //console.log("Starting...");
 require("dotenv").config();
-require('discord.js/src/util/Constants.js').DefaultOptions.ws.properties.$browser = 'Discord iOS'
+require("discord.js/src/util/Constants.js").DefaultOptions.ws.properties.$browser =
+  "Discord iOS";
 const { Client, Collection, BaseManager, Intents } = require("discord.js");
 const { Command } = require("./command.js");
 const fs = require("fs");
 const fortnite_ban = require("./fortnite_ban.js");
 const cooldowns = new Collection();
-process.on('unhandledRejection', (reason, p) => {
-    console.error('Unhandled Rejection at:', p)
+process.on("unhandledRejection", (reason, p) => {
+  console.error("Unhandled Rejection at:", p);
 });
 class CommandManager extends BaseManager {
   constructor(client) {
@@ -41,9 +42,9 @@ class NoFortniteClient extends Client {
 }
 const client = new NoFortniteClient({
   partials: ["GUILD_MEMBER", "USER"],
-  messageCacheMaxSize:5,
+  messageCacheMaxSize: 5,
   ws: {
-    large_threshold:250,
+    large_threshold: 250,
     intents: new Intents([
       "GUILDS",
       "GUILD_PRESENCES",
@@ -52,7 +53,7 @@ const client = new NoFortniteClient({
     ])
   }
 });
-process.on('exit',code => console.error(`Terminated (${code})`))
+process.on("exit", code => console.error(`Terminated (${code})`));
 fs.readdirSync(__dirname + "/commands")
   .filter(file => file.endsWith(".js"))
   .forEach(file => {
@@ -72,7 +73,7 @@ client.on("message", async message => {
     return message.channel.send(
       `Hi!My prefix is \`${process.env.PREFIX}\`.\nTo get started type \`${process.env.PREFIX}help\``
     );
-  if (!message.content.startsWith(process.env.PREFIX)) return;
+  if (!message.content.toLowerCase().startsWith(process.env.PREFIX.toLowerCase())) return;
   if (
     message.guild &&
     !message.channel.permissionsFor(message.guild.me).serialize().SEND_MESSAGES
@@ -134,13 +135,16 @@ client.on("message", async message => {
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag} at ${new Date().toString()}.`);
   client.user.setActivity({
-    name: "v2.0.1 | Use " + process.env.PREFIX + "help for help"
+    name:
+      "Mobile Fortnite Players | Use " + process.env.PREFIX + "help for help",
+    type: "WATCHING"
   });
   client.owner = await client.users.fetch(process.env.OWNERID);
 });
-client.login(process.env.BOT_TOKEN)
-.catch(() => client.login(process.env.BOT_TOKEN))
-.catch(() => client.login(process.env.BOT_TOKEN))
-.catch(() => client.login(process.env.BOT_TOKEN))
-.catch(() => client.login(process.env.BOT_TOKEN))
-.catch(() => client.login(process.env.BOT_TOKEN))
+client
+  .login(process.env.BOT_TOKEN)
+  .catch(() => client.login(process.env.BOT_TOKEN))
+  .catch(() => client.login(process.env.BOT_TOKEN))
+  .catch(() => client.login(process.env.BOT_TOKEN))
+  .catch(() => client.login(process.env.BOT_TOKEN))
+  .catch(() => client.login(process.env.BOT_TOKEN));
