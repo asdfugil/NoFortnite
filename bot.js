@@ -1,5 +1,6 @@
 //console.log("Starting...");
 require("dotenv").config();
+require('discord.js/src/util/Constants.js').DefaultOptions.ws.properties.$browser = 'Discord iOS'
 const { Client, Collection, BaseManager, Intents } = require("discord.js");
 const { Command } = require("./command.js");
 const fs = require("fs");
