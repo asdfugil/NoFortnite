@@ -42,7 +42,7 @@ class NoFortniteClient extends Client {
 }
 const client = new NoFortniteClient({
   partials: ["GUILD_MEMBER", "USER"],
-  messageCacheMaxSize: 5,
+  messageCacheMaxSize: 300,
   ws: {
     large_threshold: 250,
     intents: new Intents([
