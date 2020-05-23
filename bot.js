@@ -148,4 +148,8 @@ client
   .catch(() => client.login(process.env.BOT_TOKEN))
   .catch(() => client.login(process.env.BOT_TOKEN))
   .catch(() => client.login(process.env.BOT_TOKEN))
-  .catch(() => client.login(process.env.BOT_TOKEN));
+  .catch(() => client.login(process.env.BOT_TOKEN))
+  .catch(e => {
+  console.error("Login failed,giving up:" + e.stack)
+  process.exit(1)
+})
