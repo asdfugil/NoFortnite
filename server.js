@@ -119,5 +119,8 @@ app.use('/api',(req,res) => {
   if (req.method === 'get') return res.status(405).send('"Method not allowed"')
   else return res.status(404).send('"Not Found"')
 })
+setInterval(() => {
+fetch(`${process.env.PROJECT_DOMAIN}.gitch.me`)
+},60000)
 //app.use(require('express-http-proxy')('https://assfugil.github.io'))
 client.login(process.env.RANDOM_BOT_TOKEN);
