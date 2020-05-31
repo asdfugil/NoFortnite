@@ -142,6 +142,13 @@ client.on("ready", async () => {
   });
   client.owner = await client.users.fetch(process.env.OWNERID);
 });
+client.once('ready',() => {
+  client.setInterval(() => client.user.setActivity({
+    name:
+      client.users.cache.filter(x => x.presence && x.presence.activities && x.presence.activities.some(y => y.name.toLowerCase() === "fortnite")).size + " Fortnite Players | Use " + process.env.PREFIX + "help for help",
+    type: "WATCHING"
+  }),60000)
+})
 client
   .login(process.env.BOT_TOKEN)
   .catch(() => client.login(process.env.BOT_TOKEN))
