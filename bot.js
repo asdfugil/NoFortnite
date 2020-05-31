@@ -42,7 +42,7 @@ class NoFortniteClient extends Client {
 }
 const client = new NoFortniteClient({
   partials: ["GUILD_MEMBER", "USER"],
-  messageCacheMaxSize: 300,
+  messageCacheMaxSize: 5,
   ws: {
     large_threshold: 250,
     intents: new Intents([
@@ -137,7 +137,7 @@ client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag} at ${new Date().toString()}.`);
   client.user.setActivity({
     name:
-      "Mobile Fortnite Players | Use " + process.env.PREFIX + "help for help",
+      client.users.cache.filter(x => x.presence && x.presence.activities && x.presence.activities.some(y => y.name.toLowerCase() === "fortnite")).size + " Fortnite Players | Use " + process.env.PREFIX + "help for help",
     type: "WATCHING"
   });
   client.owner = await client.users.fetch(process.env.OWNERID);
