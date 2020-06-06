@@ -8,7 +8,7 @@ dependencies:
   form-data: 3.0.0
   keyv: 4.0.1
   libsodium-wrappers: 0.7.6
-  moment: 2.25.3
+  moment: 2.26.0
   moment-duration-format: 2.3.2
   node-fetch: 2.6.0
   sodium: 3.0.2
@@ -763,10 +763,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-cBMXjSW+fjOb4tyaVHuaVE/A5TqkukDWiOfxxAjY+PEqmmBQlLwn+8OzwPiG3brouXKY5Un4pBjAeB6UToXHaQ==
-  /moment/2.25.3:
+  /moment/2.26.0:
     dev: false
     resolution:
-      integrity: sha512-PuYv0PHxZvzc15Sp8ybUCoQ+xpyPWvjOuK72a5ovzp2LI32rJXOiIfyoFoYvG3s6EwwrdkMyWuRiEHSZRLJNdg==
+      integrity: sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
   /ms/2.0.0:
     dev: false
     resolution:
@@ -1384,7 +1384,7 @@ specifiers:
   form-data: ^3.0.0
   keyv: ^4.0.1
   libsodium-wrappers: ^0.7.5
-  moment: ^2.25.3
+  moment: ^2.26.0
   moment-duration-format: ^2.3.2
   node-fetch: ^2.6.0
   sodium: ^3.0.2
