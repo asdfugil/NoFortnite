@@ -18,7 +18,7 @@ const log_channels = new Keyv("sqlite://.data/database.sqlite", {
 module.exports = async function(_, presence) {
   if (!presence.member || !presence.guild) return;
   if (presence.member.partial)
-    presence = await presence.guild.members
+    presence.member = await presence.guild.members
       .fetch(presence.member.id)
       .catch(error => {
         console.error("Failed to fetch Member! " + `(${error.code})`);
