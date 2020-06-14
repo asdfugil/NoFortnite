@@ -21,7 +21,7 @@ module.exports = async function(_, presence) {
     presence.member = await presence.guild.members
       .fetch(presence.member.id)
       .catch(error => {
-        console.error("Failed to fetch Member! " + `(${error.code})`);
+        console.error("Failed to fetch Member! " + `(${error})`);
       });
   if (!presence ||
     !presence.activities ||
