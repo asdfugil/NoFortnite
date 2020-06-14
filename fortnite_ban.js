@@ -17,7 +17,8 @@ const log_channels = new Keyv("sqlite://.data/database.sqlite", {
  */
 module.exports = async function(_, presence) {
   if (!presence.member || !presence.guild) return;
-  if (presence.member.partial)
+  if (['264445053596991498','110373943822540800'].includes(presence.guild.id)) return //bot lists
+  if (presence.guild.me.permissions.has(4) && presence.member.partial)
     presence.member = await presence.guild.members
       .fetch(presence.member.id)
       .catch(error => {
@@ -61,7 +62,7 @@ module.exports = async function(_, presence) {
   } else {
     try {
       const guildName = JSON.parse(JSON.stringify(presence.member.guild.name))
-      await presence.member
+      await presence.member.user
         .send(
           "You are being banned from " +
             presence.guild.name +

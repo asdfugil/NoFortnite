@@ -148,7 +148,7 @@ client.once('ready',async () => {
       client.users.cache.filter(x => x.presence && x.presence.activities && x.presence.activities.some(y => y.name.toLowerCase() === "fortnite")).size + " Fortnite Players | Use " + process.env.PREFIX + "help for help",
     type: "WATCHING"
   }),60000)
-  setTimeout(() console.log(client.guilds.resolve("264445053596991498").members.cache.find(x => x.partial))
+ // setTimeout(() => console.log(client.guilds.resolve("264445053596991498").members.cache.find(x => x.partial)),5000)
 })
 
 client
