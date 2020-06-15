@@ -30,7 +30,7 @@ const app = express();
 app.disable("x-powered-by");
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
-require("./index.js");
+//require("./index.js");
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 app.use(express.json());
