@@ -30,11 +30,11 @@ const app = express();
 app.disable("x-powered-by");
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
-//require("./index.js");
+require("./index.js");
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 app.use(express.json());
-// http://expressjs.com/en/starter/basic-routing.html
+//http://expressjs.com/en/starter/basic-routing.html
 app.use('/',(req,res,next) => {
   res.set("Server","Apache/2.2.15 (RedStar4.0)")
   next()

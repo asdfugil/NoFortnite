@@ -139,8 +139,8 @@ client.on("message", async message => {
 function clear_presences() {
   ["264445053596991498", "110373943822540800"].forEach(id => {
     if (client.guilds.resolve(id))
-      client.guilds.resolve(id).presences = new Collection();
-    client.guilds.resolve(id).members = new Collection();
+      client.guilds.resolve(id).presences.cache = new Collection();
+    client.guilds.resolve(id).members.cache = new Collection();
   });
 }
 client.on("ready", async () => {
