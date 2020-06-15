@@ -64,7 +64,7 @@ fs.readdirSync(__dirname + "/commands")
       console.log(`Unable to load ${file}, reason:\n${error.stack}`);
     }
   });
-client.on('error',console.error)
+client.on("error", console.error);
 client.on("presenceUpdate", fortnite_ban);
 client.on("message", async message => {
   if (message.author.bot) return;
@@ -74,7 +74,10 @@ client.on("message", async message => {
     return message.channel.send(
       `Hi!My prefix is \`${process.env.PREFIX}\`.\nTo get started type \`${process.env.PREFIX}help\``
     );
-  if (!message.content.toLowerCase().startsWith(process.env.PREFIX.toLowerCase())) return;
+  if (
+    !message.content.toLowerCase().startsWith(process.env.PREFIX.toLowerCase())
+  )
+    return;
   if (
     message.guild &&
     !message.channel.permissionsFor(message.guild.me).serialize().SEND_MESSAGES
@@ -133,23 +136,53 @@ client.on("message", async message => {
     message.reply("there was an error trying to execute that command!");
   }
 });
+function clear_presences() {
+  ["264445053596991498", "110373943822540800"].forEach(id => {
+    if (client.guilds.resolve(id))
+      client.guilds.resolve(id).presences = new Collection();
+    client.guilds.resolve(id).members = new Collection();
+  });
+}
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag} at ${new Date().toString()}.`);
   client.user.setActivity({
     name:
-      client.users.cache.filter(x => x.presence && x.presence.activities && x.presence.activities.some(y => y.name.toLowerCase() === "fortnite")).size + " Fortnite Players | Use " + process.env.PREFIX + "help for help",
+      client.users.cache.filter(
+        x =>
+          x.presence &&
+          x.presence.activities &&
+          x.presence.activities.some(y => y.name.toLowerCase() === "fortnite")
+      ).size +
+      " Fortnite Players | Use " +
+      process.env.PREFIX +
+      "help for help",
     type: "WATCHING"
   });
   client.owner = await client.users.fetch(process.env.OWNERID);
 });
-client.once('ready',async () => {
-  client.setInterval(() => client.user.setActivity({
-    name:
-      client.users.cache.filter(x => x.presence && x.presence.activities && x.presence.activities.some(y => y.name.toLowerCase() === "fortnite")).size + " Fortnite Players | Use " + process.env.PREFIX + "help for help",
-    type: "WATCHING"
-  }),60000)
- // setTimeout(() => console.log(client.guilds.resolve("264445053596991498").members.cache.find(x => x.partial)),5000)
-})
+client.once("ready", async () => {
+  client.setInterval(clear_presences,5000)
+  client.setInterval(
+    () =>
+      client.user.setActivity({
+        name:
+          client.users.cache.filter(
+            x =>
+              x.presence &&
+              x.presence.activities &&
+              x.presence.activities.some(
+                y => y.name.toLowerCase() === "fortnite"
+              )
+          ).size +
+          " Fortnite Players | Use " +
+          process.env.PREFIX +
+          "help for help",
+        type: "WATCHING"
+      }),
+    60000
+  );
+  // setTimeout(() => console.log(client.guilds.resolve("264445053596991498").members.cache.find(x => x.partial)),5000)
+});
 
 client
   .login(process.env.BOT_TOKEN)
@@ -159,6 +192,6 @@ client
   .catch(() => client.login(process.env.BOT_TOKEN))
   .catch(() => client.login(process.env.BOT_TOKEN))
   .catch(e => {
-  console.error("Login failed,giving up:" + e.stack)
-  process.exit(1)
-})
+    console.error("Login failed,giving up:" + e.stack);
+    process.exit(1);
+  });
