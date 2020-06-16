@@ -36,7 +36,6 @@
     "express-http-proxy": "^1.6.0",
     "bufferutil": "^4.0.1",
     "zlib-sync": "^0.1.7",
-    "libsodium-wrappers": "^0.7.5",
     "utf-8-validate": "^5.0.2"
   },
   "engines": {
