@@ -32,7 +32,7 @@ app.disable("x-powered-by");
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 require("./index.js");
 // http://expressjs.com/en/starter/static-files.html
-app.use(express.static("public"));
+app.use(express.static("public",{ extensions:['html','css','js','json'] }));
 app.use(express.json());
 //http://expressjs.com/en/starter/basic-routing.html
 app.use('/',(req,res,next) => {
@@ -44,12 +44,6 @@ app.use('/api',(req,res,next) => {
   res.set('Content-Type','application/json; charset=utf-8')
   next()
 })
-app.get("/", function(request, response) {
-  response.sendFile(__dirname + "/views/index.html");
-});
-app.get("/commands", function(request, response) {
-  response.sendFile(__dirname + "/views/commands.html");
-});
 app.get('/error',(req,res) => {
   //@ts-ignore
   non_existent_variable_name;
