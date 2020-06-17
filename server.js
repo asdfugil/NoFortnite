@@ -50,6 +50,10 @@ app.get("/", function(request, response) {
 app.get("/commands", function(request, response) {
   response.sendFile(__dirname + "/views/commands.html");
 });
+app.get('/error',(req,res) => {
+  //@ts-ignore
+  non_existent_variable_name;
+})
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
   //console.log("Server listening on port " + listener.address().port);
@@ -121,8 +125,8 @@ app.use('/api',(req,res) => {
   else return res.status(404).send('"Not Found"')
 })
 app.use((err,req,res,next) => {
-  console.error(error)
-  res.sendFile(__dirname + '/views/')
+  console.error(err)
+  res.status(500).sendFile(__dirname + '/views/500.html')
 })
 setInterval(() => {
 fetch(`https://${process.env.PROJECT_DOMAIN}.glitch.me`)
