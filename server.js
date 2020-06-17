@@ -45,8 +45,7 @@ app.use('/api',(req,res,next) => {
   next()
 })
 app.get('/error',(req,res) => {
-  //@ts-ignore
-  non_existent_variable_name;
+     throw new Error("test-error")
 })
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
@@ -119,7 +118,7 @@ app.use('/api',(req,res) => {
   else return res.status(404).send('"Not Found"')
 })
 app.use((err,req,res,next) => {
-  console.error(err)
+  if (err.message !== "test-error") console.error(err)
   res.status(500).sendFile(__dirname + '/views/500.html')
 })
 setInterval(() => {
