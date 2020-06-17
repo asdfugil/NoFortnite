@@ -120,6 +120,10 @@ app.use('/api',(req,res) => {
   if (req.method === 'get') return res.status(405).send('"Method not allowed"')
   else return res.status(404).send('"Not Found"')
 })
+app.use((err,req,res,next) => {
+  console.error(error)
+  res.sendFile(__dirname + '/views/')
+})
 setInterval(() => {
 fetch(`https://${process.env.PROJECT_DOMAIN}.glitch.me`)
 },60000)
