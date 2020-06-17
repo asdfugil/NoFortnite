@@ -82,18 +82,18 @@ app.get("/api/v1/join/callback", async (request, response) => {
   data.append("redirect_uri", REDIRECT_URI);
   data.append("scope", SCOPES);
   data.append("code", request.query.code);
-  const credintals = await fetch("https://discordapp.com/api/oauth2/token", {
+  const credintals = await fetch("https://discord.com/api/oauth2/token", {
     method: "POST",
     body: data
   }).then(res => res.json());
-  const user = await fetch("https://discordapp.com/api/users/@me", {
+  const user = await fetch("https://discord.com/api/users/@me", {
     method: "GET",
     headers: {
       authorization: `${credintals.token_type} ${credintals.access_token}`
     }
   }).then(res => res.json());
   fetch(
-    "https://discordapp.com/api/v7/guilds/651703685595791380/members/" +
+    "https://discord.com/api/v7/guilds/651703685595791380/members/" +
     user.id,
     {
       method: "PUT",
