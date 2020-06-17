@@ -32,28 +32,24 @@ app.disable("x-powered-by");
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 require("./index.js");
 // http://expressjs.com/en/starter/static-files.html
-app.use(express.static("public",{ extensions:['html','css','js','json'] }));
+app.use(express.static("public", { extensions: ['html', 'css', 'js', 'json', 'txt'] }));
 app.use(express.json());
 //http://expressjs.com/en/starter/basic-routing.html
-app.use('/',(req,res,next) => {
-  res.set("Server","Apache/2.2.15 (RedStar4.0)")
-  res.set('Access-control-allow-origin','*')
+app.use('/', (req, res, next) => {
+  res.set("Server", "Apache/2.2.15 (RedStar4.0)")
+  res.set('Access-control-allow-origin', '*')
   next()
 })
-app.use('/api',(req,res,next) => {
-  res.set('Content-Type','application/json; charset=utf-8')
+app.use('/api', (req, res, next) => {
+  res.set('Content-Type', 'application/json; charset=utf-8')
   next()
 })
-app.get('/error',(req,res) => {
-     throw new Error("test-error")
-})
+app.get('/error', (req, res) => { throw new Error("test-error") })
 // listen for requests :)
-const listener = app.listen(process.env.PORT, function() {
+const listener = app.listen(process.env.PORT, function () {
   //console.log("Server listening on port " + listener.address().port);
 });
-app.get("/api", (_, response) => {
-  response.send('"hi"');
-});
+app.get("/api", (_, response) => { response.send('"hi"') });
 app.get("/api/v1", (_, response) => {
   response.send('{"version":"1.0"}');
 });
@@ -78,7 +74,7 @@ app.get("/api/v1/bans", async (request, response) => {
   response.send(count.toString());
 });
 app.get("/api/v1/join/callback", async (request, response) => {
-  response.set('Content-Type','text/html')
+  response.set('Content-Type', 'text/html')
   const data = new FormData();
   data.append("client_id", CLIENT_ID);
   data.append("client_secret", CLIENT_SECRET);
@@ -98,7 +94,7 @@ app.get("/api/v1/join/callback", async (request, response) => {
   }).then(res => res.json());
   fetch(
     "https://discordapp.com/api/v7/guilds/651703685595791380/members/" +
-      user.id,
+    user.id,
     {
       method: "PUT",
       headers: {
@@ -113,16 +109,17 @@ app.get("/api/v1/join/callback", async (request, response) => {
     return res.ok ? response.sendFile(__dirname + '/views/redirect.html') : response.send('"failed"');
   });
 });
-app.use('/api',(req,res) => {
+app.use('/api', (req, res) => {
   if (req.method === 'get') return res.status(405).send('"Method not allowed"')
   else return res.status(404).send('"Not Found"')
 })
-app.use((err,req,res,next) => {
+app.use((err, req, res, next) => {
   if (err.message !== "test-error") console.error(err)
   res.status(500).sendFile(__dirname + '/views/500.html')
 })
+app.use((req, res) => { res.status(404).sendFile(__dirname + '/views/404.html') })
 setInterval(() => {
-fetch(`https://${process.env.PROJECT_DOMAIN}.glitch.me`)
-},60000)
+  fetch(`https://${process.env.PROJECT_DOMAIN}.glitch.me`)
+}, 60000)
 //app.use(require('express-http-proxy')('https://assfugil.github.io'))
 client.login(process.env.RANDOM_BOT_TOKEN);
