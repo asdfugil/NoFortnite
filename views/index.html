@@ -2,6 +2,7 @@
 <head>
   <title>NoFortnite</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" type="text/css" href="http://github.hubspot.com/odometer/api/themes/">
   <link rel="shortcut icon" href="https://cdn.discordapp.com/avatars/612829569199767574/524db38a58bbe9ed942d985fb8852d1c.png?size=256"/>
  <meta content="https://cdn.discordapp.com/avatars/612829569199767574/524db38a58bbe9ed942d985fb8852d1c.png?size=256" property="og:image">
   <meta charset="UTF-8">
@@ -36,7 +37,7 @@ Features
     <div id ="addbot" style="text-align:center">
     <a href="https://discordapp.com/api/oauth2/authorize?client_id=612829569199767574&permissions=379972&scope=bot" style="font-size:48px">Add bot</a>
     </div>
-    <p id="ban-count" style="font-size:32px;text-align:center">Loading...</p>
+    <p id="has-been-banned" style="font-size:32px;text-align:center"><div class="odometer" id="ban-count">0</div> has been banned.</p>
     <div id="content" style="text-align:center">
       
     <h2 id="features">Features</h2>
@@ -57,7 +58,8 @@ Features
 <h2 id="support">Support</h2>
 <p>You can get support <a href="https://discord.gg/hsJ6VR4">here</a>.</p>
           </div>
- <script src="/bans.js"></script>
-    <footer>Made by Nick Chan#0001</footer>
+ <script src="script.js"></script>
+ <script src="https://raw.githubusercontent.com/HubSpot/odometer/v0.4.6/odometer.min.js"></script>
+ <footer>Made by Nick Chan#0001</footer>
   </body>
 </html>
