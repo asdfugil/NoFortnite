@@ -24,6 +24,7 @@ const stats = new Keyv("sqlite://.data/database.sqlite", {
 const client = new Client();
 const fetch = require("node-fetch");
 const vote_hook = new WebhookClient(VOTE_WEBHOOK_ID, VOTE_WEBHOOK_TOKEN);
+const https = require('https')
 const crypto = require("crypto");
 const fs = require('fs')
 const FormData = require("form-data");
@@ -50,10 +51,6 @@ app.use('/api', (req, res, next) => {
   next()
 })
 app.get('/error', (req, res) => { throw new Error("test-error") })
-// listen for requests :)
-const listener = app.listen(process.env.PORT || 3000, function () {
-  //console.log("Server listening on port " + listener.address().port);
-});
 app.get("/api", (_, response) => { response.send('"hi"') });
 app.get("/api/v1", (_, response) => {
   response.send('{"version":"1.0"}');
@@ -126,5 +123,8 @@ app.use((req, res) => { res.status(404).sendFile(__dirname + '/views/404.html') 
 setInterval(() => {
   fetch(`https://${process.env.PROJECT_DOMAIN}.glitch.me`)
 }, 60000)
-//app.use(require('express-http-proxy')('https://assfugil.github.io'))
+https.createServer({
+  key:fs.readFileSync('.ssl/private.pem','utf8'),
+  cert:fs.readFileSync('.ssl/certificate.crt','utf8')
+},app).listen(3000)
 client.login(process.env.RANDOM_BOT_TOKEN);
