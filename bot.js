@@ -1,6 +1,6 @@
 //console.log("Starting...");
 require("dotenv").config();
-require("discord.js/src/util/Constants.js").DefaultOptions.ws.properties.$browser =
+//require("discord.js/src/util/Constants.js").DefaultOptions.ws.properties.$browser =
   "Discord iOS";
 const { Client, Collection, BaseManager, Intents } = require("discord.js");
 const { Command } = require("./command.js");
@@ -187,11 +187,13 @@ client.once("ready", async () => {
 client
   .login(process.env.BOT_TOKEN)
   .catch(() => client.login(process.env.BOT_TOKEN))
-  .catch(() => client.login(process.env.BOT_TOKEN))
-  .catch(() => client.login(process.env.BOT_TOKEN))
-  .catch(() => client.login(process.env.BOT_TOKEN))
-  .catch(() => client.login(process.env.BOT_TOKEN))
   .catch(e => {
     console.error("Login failed,giving up:" + e.stack);
     process.exit(1);
   });
+setInterval(() => {
+  if (process.memoryUsage.rss() > 4294967296) { 
+    process.exit(1)
+    console.log('Memory usage reached 4GB! Restarting as a safety precaution.')
+  }
+},60000)
