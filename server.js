@@ -51,7 +51,7 @@ app.use('/api', (req, res, next) => {
 })
 app.get('/error', (req, res) => { throw new Error("test-error") })
 // listen for requests :)
-const listener = app.listen(process.env.PORT, function () {
+const listener = app.listen(process.env.PORT || 3000, function () {
   //console.log("Server listening on port " + listener.address().port);
 });
 app.get("/api", (_, response) => { response.send('"hi"') });
