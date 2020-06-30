@@ -192,8 +192,8 @@ client
     process.exit(1);
   });
 setInterval(() => {
-  if (process.memoryUsage.rss() > 4294967296) { 
-    process.exit(1)
+  if (process.memoryUsage().rss > 4294967296) { 
     console.log('Memory usage reached 4GB! Restarting as a safety precaution.')
+    process.exit(1)
   }
 },60000)

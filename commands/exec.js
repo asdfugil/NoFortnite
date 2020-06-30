@@ -2,9 +2,10 @@ const { exec } = require("child_process");
 const Discord = require("discord.js");
 const fs = require("fs");
 const devsID = process.env.DEVS_ID.split(",")
-const { MessageAttachment, MessageEmbed, Permissions } = Discord;
+const {  MessageEmbed } = Discord;
 const EventEmitter = require("events");
 const clean = require("../clean.js")
+const tmp = require('os').tmpdir()
 module.exports = {
   args: true, //either boolean or number
   name: "exec",
@@ -19,22 +20,22 @@ module.exports = {
      const time = Date.now() - mu
      const embed = new MessageEmbed()
       if (stdout) {
-        fs.writeFileSync("/tmp/stdout.log",stdout)
+        fs.writeFileSync(`${tmp}/no-fortnite/stdout.log`,stdout)
           embed
           .setColor("#00ff00")
           .setTitle("Output")
            if (clean(stdout).length < 2010)embed.setDescription("```bash\n" + clean(stdout)+"\n```");
           embed.setFooter(`${time}ms`)
-          if (message.guild && message.channel.permissionsFor(message.guild.me).serialize().ATTACH_FILES) embed.attachFiles(["/tmp/stdout.log"])
+          if (message.guild && message.channel.permissionsFor(message.guild.me).serialize().ATTACH_FILES) embed.attachFiles([`${tmp}/no-fortnite/stdout.log`])
           return message.channel.send(embed)
-      } else if (stderr) {
-        fs.writeFileSync("/tmp/stderr.log",stdout)
+      } else if (error) {
+        fs.writeFileSync(`${tmp}/no-fortnite/stderr.log`,stderr)
         embed
         .setColor("#ff0000")
         .setTitle("Error")
            if (clean(stderr).length < 2010)embed.setDescription("```bash\n" + (clean(stderr) || "# Command execution failed and returned no output") +"\n```");
         embed.setFooter(`${time}ms`)
-        if (message.guild && message.channel.permissionsFor(message.guild.me).serialize().ATTACH_FILES) embed.attachFiles(["/tmp/stderr.log"])
+        if (message.guild && message.channel.permissionsFor(message.guild.me).serialize().ATTACH_FILES) embed.attachFiles([`${tmp}/no-fortnite/stderr.log`])
         return message.channel.send(embed)
       } else {
         embed

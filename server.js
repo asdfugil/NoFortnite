@@ -25,8 +25,13 @@ const client = new Client();
 const fetch = require("node-fetch");
 const vote_hook = new WebhookClient(VOTE_WEBHOOK_ID, VOTE_WEBHOOK_TOKEN);
 const crypto = require("crypto");
+const fs = require('fs')
 const FormData = require("form-data");
 const app = express();
+const tmp = require('os').tmpdir()
+if (!fs.readdirSync(tmp).includes('no-fortnite')) {
+  fs.mkdirSync(`${tmp}/no-fortnite`)
+}
 app.disable("x-powered-by");
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.

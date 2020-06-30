@@ -8,6 +8,7 @@ const { MessageAttachment, MessageEmbed, Permissions } = Discord;
 const EventEmitter = require("events");
 const util = require("util");
 const clean = require("../clean.js")
+const tmp = require('os').tmpdir()
 module.exports = {
   args: true, //either boolean or number
   name: "eval",
@@ -31,9 +32,9 @@ module.exports = {
             message.channel.send(clean(evaled), {
               code: "xl"
             });
-          fs.writeFileSync("/tmp/result.log", clean(evaled));
+          fs.writeFileSync(`${tmp}/no-fortnite/result.log`, clean(evaled));
           if (message.guild && message.channel.permissionsFor(message.guild.me).serialize().ATTACH_FILES) message.channel
-            .send(new MessageAttachment("/tmp/result.log"))
+            .send(new MessageAttachment(`${tmp}/no-fortnite/result.log`))
             .then(() => {
               if (reaction) reaction.remove();
               message.react("✅");
