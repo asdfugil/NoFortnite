@@ -15,6 +15,7 @@ const {
 const express = require("express");
 const { Client, WebhookClient } = require("discord.js");
 const Keyv = require("keyv");
+require('fs').writeFileSync('pidfile',process.pid.toString())
 const votes = new Keyv("sqlite://.data/database.sqlite", {
   namespace: "votes"
 });
@@ -64,12 +65,9 @@ app.post("/api/v1/upvote", async (request, response) => {
     .digest("hex");
   if (hash !== process.env.DBL_KEY_HASH)
     return response.status(401).send('"Incorrect key"');
-  if (request.body.type === "upvote") {
     const user = await client.users.fetch(request.body.user);
     vote_hook.send(`${user.tag} (${user.id}) has just voted!`);
-  } else {
-    vote_hook.send(JSON.stringify(request.body), { code: "json" });
-  }
+    console.log(`${user.tag} (${user.id}) has just voted!`)
 });
 app.get("/api/v1/bans", async (request, response) => {
   const count = (await stats.get("global-ban-count")) || 0;

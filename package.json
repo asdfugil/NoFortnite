@@ -4,7 +4,7 @@
   "description": "A discord bot that automatically bans Fortnite players",
   "main": "server.js",
   "scripts": {
-    "start": "node ."
+    "start": "node --max-old-space-size=5000 ."
   },
   "repository": {
     "type": "git",

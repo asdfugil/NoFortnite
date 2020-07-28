@@ -3,3 +3,9 @@ node_modules
 .ssl/*
 .data
 nohup.out
+pidfile
+test,json
+.config
+.local
+.bash_history
+.ssh
