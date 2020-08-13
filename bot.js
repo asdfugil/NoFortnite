@@ -136,13 +136,6 @@ client.on("message", async message => {
     message.reply("there was an error trying to execute that command!");
   }
 });
-function clear_presences() {
-  ["264445053596991498", "110373943822540800"].forEach(id => {
-    if (client.guilds.resolve(id))
-      client.guilds.resolve(id).presences.cache = new Collection();
-    client.guilds.resolve(id).members.cache = new Collection();
-  });
-}
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag} at ${new Date().toString()}.`);
   client.user.setActivity({
@@ -161,7 +154,6 @@ client.on("ready", async () => {
   client.owner = await client.users.fetch(process.env.OWNERID);
 });
 client.once("ready", async () => {
-  client.setInterval(clear_presences,5000)
   client.setInterval(
     () =>
       client.user.setActivity({
@@ -181,7 +173,6 @@ client.once("ready", async () => {
       }),
     60000
   );
-  // setTimeout(() => console.log(client.guilds.resolve("264445053596991498").members.cache.find(x => x.partial)),5000)
 });
 
 client
